@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:news_app/model/catagoriesModel.dart';
 import 'package:news_app/model/newsChannelHeadlineModel.dart';
 class NewReop{
 
@@ -18,7 +19,7 @@ class NewReop{
     }
     throw Exception('Error');
   }
-  Future<MyModel01> CategoriesChannelApi(String category)async{
+  Future<MyModel02> categoriesChannelApi(String category)async{
     String url = 'https://newsapi.org/v2/everything?q=${category}&apiKey=0115684db44e462d946f1ef478c3b74c' ;
     print(url);
     final response = await http.get(Uri.parse(url));
@@ -27,7 +28,7 @@ class NewReop{
     }
     if(response.statusCode == 200){
       final body = jsonDecode(response.body);
-      return MyModel01.fromJson(body);
+      return MyModel02.fromJson(body);
     }
     throw Exception('Error');
   }
